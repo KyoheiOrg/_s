@@ -50,11 +50,12 @@
     "map": false
   },
   "scripts": {
-    "watch": "npm-run-all -s watch:sass -p \"watch:* -- -w\"",
-    "watch:sass": "sass src/sass/style.scss dist/style.css --no-source-map",
-    "watch:postcss": "postcss dist/style.css -o dist/style.min.css",
+    "watch": "npm-run-all -s watch:css -p \"watch:* -- -w\"",
+    "watch:css": "sass src/sass/style.scss dist/style.css",
     "watch:js": "webpack",
-    "build": "webpack --mode=production",
+    "build": "npm-run-all -p build:*",
+    "build:js": "webpack --mode=production",
+    "build:css": "postcss dist/style.css -o dist/style.css",
     "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
